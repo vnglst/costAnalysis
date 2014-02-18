@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Translation costs</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app/css/style.css">
+</head>
+
+<body>
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Cost Analysis</a>
+        </div>
+        <div class="navbar-collapse collapse" ng-controller="HeaderController">
+            <ul class="nav navbar-nav">
+                <li ng-class="{ active: isActive('/home')}"><a href="#/home">Home</a></li>
+                <li ng-class="{ active: isActive('/settings')}"><a href="#/settings">Settings</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-class="{ active: isActive('/about')}"><a href="#/about">About</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+
+    <div ng-view></div>
+
+    <!-- Vendor Libraries -->
+    <!-- In production use:
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+    -->
+    <script src="libraries/js/angular.js"></script>
+    <script src="libraries/js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+    <script src="http://gregpike.net/demos/angular-local-storage/angular-local-storage.js"></script>
+
+    <!-- App Libraries acc. Angular Seed structure:
+     https://github.com/angular/angular-seed/blob/master/app/index.html
+    -->
+    <script src="app/js/app.js"></script>
+    <script src="app/js/services.js"></script>
+    <script src="app/js/controllers.js"></script>
+    <script src="app/js/filters.js"></script>
+    <script src="app/js/directives.js"></script>
+
+</body>
+
+</html>

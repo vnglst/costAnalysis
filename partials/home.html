@@ -1,0 +1,79 @@
+<div class="col-sm-5 panel panel-default">
+    <div class="panel-body">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-3 col-xs-5 control-label input-sm">Match type</label>
+
+                <div class="col-sm-6 col-xs-4">
+                    <p class="form-control-static input-sm">Words</p>
+                </div>
+
+                <div class="col-sm-3 col-xs-3">
+                    <p class="form-control-static input-sm">Discounts</p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-repeat="match in appStatus.matches">
+
+                <label for="words-{{$index}}" class="col-sm-3 col-xs-3 control-label input-sm">{{match.type}}</label>
+
+                <div class="col-sm-8 col-xs-8 col- input-group input-group-sm">
+                    <input type="number" class="form-control input-sm" id="words-{{$index}}" placeholder="match.words"
+                           ng-model="match.words" ng-change="wordsChange()">
+                    <span class="input-group-addon">@ {{match.weight}} %</span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="col-sm-6 panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-8 col-xs-8">
+                <h6>Total words: {{totalWords}}</h6>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 col-xs-8">
+                <h6>Weighed words: {{weighedWords}}</h6>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-xs-4">
+                <h6>Estimated hours: {{hoursEst}}</h6>
+            </div>
+
+            <div class="col-sm-8 col-xs-6 input-group input-group-sm">
+                <span class="input-group-addon">@</span>
+                <input type="number" class="form-control" placeholder="2000" ng-model="appStatus.wordsPerDay"
+                       ng-change="wordsChange()">
+                <span class="input-group-addon">words / day</span>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-xs-4">
+                <h6>Total costs: {{costsEst | currency:"€"}}</h6>
+            </div>
+
+            <div class="col-sm-8 col-xs-6 input-group input-group-sm">
+                <span class="input-group-addon">@</span>
+                <input type="number" class="form-control" placeholder="0.20" ng-model="appStatus.costsPerUnit"
+                       ng-change="wordsChange()">
+                <span class="input-group-addon">euro per word</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <alert ng-repeat="alert in alerts" type="alert.type">{{alert.msg}}</alert>
+    </div>
+</div>

@@ -17,7 +17,7 @@
 
                 <label for="words-{{$index}}" class="col-sm-3 col-xs-3 control-label input-sm">{{match.type}}</label>
 
-                <div class="col-sm-8 col-xs-8 col- input-group input-group-sm">
+                <div class="col-sm-8 col-xs-8 input-group input-group-sm">
                     <input type="number" class="form-control input-sm" id="words-{{$index}}" placeholder="match.words"
                            ng-model="match.words" ng-change="wordsChange()">
                     <span class="input-group-addon">@ {{match.weight}} %</span>
@@ -69,11 +69,19 @@
 
         </div>
 
-    </div>
-</div>
+        <div class="row">
+            <br/>
+           <p>
+            <span ng-repeat="model in appStatus.discountModels">
+                <a class="btn btn-sm btn-primary" 
+                ng-click="changeDiscounts({{ model }})"
+                href="" role="button">{{model.name}}</a>
+            </span>
+            </p>
 
-<div class="row">
-    <div class="col-sm-12">
-        <alert ng-repeat="alert in alerts" type="alert.type">{{alert.msg}}</alert>
-    </div>
+            <p><a class="btn btn-sm btn-danger" 
+                ng-click="resetSession()" href="" role="button">Reset all</a></p>
+
+
+        </div>
 </div>

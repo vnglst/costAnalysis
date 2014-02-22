@@ -17,11 +17,6 @@ app.config(function ($routeProvider) {
         controller: 'HomeController'
     });
 
-    $routeProvider.when('/settings', {
-        templateUrl: 'partials/settings.html',
-        controller: 'SettingsController'
-    });
-
     $routeProvider.otherwise({ redirectTo: '/home' });
 
 });

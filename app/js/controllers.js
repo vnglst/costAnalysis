@@ -4,7 +4,8 @@
 
 app.controller('HomeController', function ($scope, appStatusService, $timeout) {
 
-    // if the user changes a value in one of the field, update calculation and save new values to localStorage
+    // if the user changes a value in one of the fields the calculation is updated and 
+    // the new values are saved to localStorage
     $scope.wordsChange = function () {
         $scope.totalWords = appStatusService.getTotalWords();
         $scope.weighedWords = appStatusService.getWeighedWords();
@@ -14,26 +15,31 @@ app.controller('HomeController', function ($scope, appStatusService, $timeout) {
             console.log("Data successfully saved.");
     };
 
-    function init() {
+    // 
+    // Create different discount models and assign them to scope
+    //
 
-        // load appStatus from localStorage
-        if (appStatusService.loadFromLocalStorage())
-        {
-            console.log("Loading existing data from local storage.");
-        }
-        else
-        {
-            console.log("Loading default data.");
-        }
-
-        // set appStatus in the scope to the appStatus in the service
-        $scope.appStatus = appStatusService.appStatus;
-
-        // Update calculations on first run, quick and dirty?
+    $scope.changeDiscounts = function(model) {
+        appStatusService.changeDiscounts( model.discounts );
         $scope.wordsChange();
     }
 
+    $scope.resetSession = function () {
+        // clear local status en reset to default state
+        appStatusService.resetSession();
+        $scope.appStatus = appStatusService.appStatus;
+        $scope.wordsChange();
+    }
+
+    // Loads session status from localstorage and update calculations
+
+    function init() {
+        $scope.appStatus = appStatusService.appStatus;
+        $scope.wordsChange();
+    }
+    
     init();
+
 });
 
 app.controller('HeaderController', function ($scope, $location) {
@@ -44,21 +50,4 @@ app.controller('HeaderController', function ($scope, $location) {
 
 app.controller('AboutController', function ($scope) {
     // TODO write some code here
-});
-
-app.controller('SettingsController', function ($scope, appStatusService) {
-    // TODO write some code
-    // Load app status
-    // Update the discounts model based on button click
-    // Save app status
-
-    $scope.noDiscounts = function () {
-        // TODO set all discounts to 0 -> weight to 100%
-        appStatusService.appStatus.matches[0].weight = 123;
-        appStatusService.changeDiscounts([100, 100, 100, 100, 100, 100, 100, 100, 100, 100]);
-
-        if (appStatusService.saveToLocalStorage())
-            console.log("Data successfully saved!!");
-    }
-
 });

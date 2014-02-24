@@ -11,6 +11,7 @@ app.service('appStatusService', function (localStorageService) {
             {name: "Reps + 100%", discounts: [33, 33, 33, 33, 100, 100, 100, 100, 100]},
             {name: "33/66/100", discounts: [33, 33, 33, 33, 66, 66, 100, 100, 100]},
             {name: "25/50/65/75", discounts: [25, 25, 25, 25, 50, 65, 75, 100, 100]},
+            {name: "Don't go there!", discounts: [0, 0, 0, 0, 50, 65, 75, 100, 100]}
             ];
         return defaultModels;
     }    
@@ -19,14 +20,14 @@ app.service('appStatusService', function (localStorageService) {
         var defaultStatus = {
             matches: [
                 {type: "X-translated", words: 0, weight: 33},
-                {type: "Repetition", words: 0, weight: 33},
+                {type: "Repetition", words: 249000, weight: 33},
                 {type: "101%", words: 0, weight: 33},
                 {type: "100%", words: 0, weight: 33},
                 {type: "95%-99%", words: 0, weight: 66},
                 {type: "85%-94%", words: 0, weight: 66},
                 {type: "75%-84%", words: 0, weight: 66},
                 {type: "50%-74%", words: 0, weight: 100},
-                {type: "No match", words: 0, weight: 100}
+                {type: "No match", words: 1000, weight: 100}
             ],
             analysisScheme: 'MemoQ',
             wordsPerDay: 2000,

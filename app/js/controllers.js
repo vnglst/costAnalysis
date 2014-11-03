@@ -7,10 +7,12 @@ app.controller('HomeController', function ($scope, appStatusService, $timeout) {
     // if the user changes a value in one of the fields the calculation is updated and 
     // the new values are saved to localStorage
     $scope.wordsChange = function () {
-        $scope.totalWords = appStatusService.getTotalWords();
-        $scope.weighedWords = appStatusService.getWeighedWords();
-        $scope.hoursEst = appStatusService.getHours();
-        $scope.costsEst = appStatusService.getCosts();
+        $scope.totalWords = Math.round(appStatusService.getTotalWords());
+        $scope.weighedWords = Math.round(appStatusService.getWeighedWords());
+        $scope.hoursEst = Math.round(appStatusService.getHours() /10) * 10;
+        $scope.costsEst = Math.round(appStatusService.getCosts() * 100) / 100;
+        $scope.totalDiscount = Math.round(appStatusService.getTotalDiscount() * 100) / 100;
+        $scope.percDiscount = Math.round(appStatusService.getPercDiscount()); 
         if (appStatusService.saveToLocalStorage())
             console.log("Data successfully saved.");
     };

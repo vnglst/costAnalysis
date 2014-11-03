@@ -11,7 +11,7 @@ app.service('appStatusService', function (localStorageService) {
             {name: "Reps + 100%", discounts: [33, 33, 33, 33, 100, 100, 100, 100, 100]},
             {name: "33/66/100", discounts: [33, 33, 33, 33, 66, 66, 100, 100, 100]},
             {name: "25/50/65/75", discounts: [25, 25, 25, 25, 50, 65, 75, 100, 100]},
-            {name: "Don't go there!", discounts: [0, 0, 0, 0, 50, 65, 75, 100, 100]}
+            {name: "Don't!", discounts: [0, 0, 0, 0, 50, 65, 75, 100, 100]}
             ];
         return defaultModels;
     }    
@@ -52,7 +52,7 @@ app.service('appStatusService', function (localStorageService) {
             var match = this.appStatus.matches[i];
             t += match.words * match.weight / 100;
         }
-        return Math.round(t);
+        return t;
     };
 
     this.getTotalWords = function () {
@@ -61,21 +61,27 @@ app.service('appStatusService', function (localStorageService) {
             var match = this.appStatus.matches[i];
             t += match.words;
         }
-        return Math.round(t);
+        return t;
     };
 
     this.getCosts = function () {
-        var totalWords = this.getWeighedWords();
-        return Math.round(
-            totalWords * this.appStatus.costsPerUnit
-        );
+        return this.getWeighedWords() * this.appStatus.costsPerUnit;
     };
 
+    this.getNoDiscountCosts = function () {
+        return this.getTotalWords() * this.appStatus.costsPerUnit;
+    }
+
+    this.getTotalDiscount = function () {
+        return this.getNoDiscountCosts() - this.getCosts();
+    }
+
+    this.getPercDiscount = function () {
+        return 100 - this.getCosts() / this.getNoDiscountCosts() * 100;
+    }
+
     this.getHours = function () {
-        var totalWords = this.getWeighedWords();
-        return Math.round(
-            totalWords / this.appStatus.wordsPerDay * 8
-        );
+        return this.getWeighedWords() / this.appStatus.wordsPerDay * 8;
     };
 
     // returns true if save is successful, .add function somehow returns false on success!?

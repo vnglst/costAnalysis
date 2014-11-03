@@ -3,7 +3,7 @@
 /* Services */
 
 app.service('appStatusService', function (localStorageService) {
-    
+
     var getDiscountModels = function() {
         var defaultModels = [
             {name: "No discounts", discounts: [100, 100, 100, 100, 100, 100, 100, 100, 100]},
@@ -14,7 +14,7 @@ app.service('appStatusService', function (localStorageService) {
             {name: "Don't!", discounts: [0, 0, 0, 0, 50, 65, 75, 100, 100]}
             ];
         return defaultModels;
-    }    
+    }
 
     var getDefaultStatus = function() {
         var defaultStatus = {
@@ -41,7 +41,7 @@ app.service('appStatusService', function (localStorageService) {
         var i;
         for (i in newDiscounts)
             this.appStatus.matches[i].weight = newDiscounts[i];
-    
+
         if (this.saveToLocalStorage())
             console.log("Discount model successfully changed!");
     };
@@ -86,10 +86,10 @@ app.service('appStatusService', function (localStorageService) {
 
     // returns true if save is successful, .add function somehow returns false on success!?
     this.saveToLocalStorage = function () {
-        return !(localStorageService.add('appStatus', this.appStatus));
+        return !(localStorageService.set('appStatus', this.appStatus));
     };
 
-    // 
+    //
     // Init and reset part
     //
 

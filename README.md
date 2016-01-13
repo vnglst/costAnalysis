@@ -4,4 +4,4 @@ This app calculates the translation costs based on an analysis from MemoQ. You c
 
 On first run you'll see an analysis with a lot of repetitions and some matches. This was based on one of the comics by Mox.
 
-More information on the app can be found here: [labs.koenvangilst.nl/costAnalysis/about] (http://labs.koenvangilst.nl/costAnalysis/#/about)
+More information on the app can be found here: [cost-analysis.koenvangilst.nl/#/about] (http://cost-analysis.koenvangilst.nl/#/about)
